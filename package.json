@@ -1,0 +1,81 @@
+{
+  "name": "daylattice",
+  "version": "0.1.0",
+  "description": "Daylattice — a premium local-first desktop todo app with Sam, your AI assistant.",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "sidecar:build": "pnpm --filter daylattice-sidecar build",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\""
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.1.0",
+    "@dnd-kit/sortable": "^8.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@tanstack/react-table": "^8.20.5",
+    "@tauri-apps/api": "^2.1.1",
+    "@tauri-apps/plugin-autostart": "^2.0.1",
+    "@tauri-apps/plugin-dialog": "^2.0.1",
+    "@tauri-apps/plugin-opener": "^2.2.2",
+    "@tauri-apps/plugin-shell": "^2.0.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.11.17",
+    "lucide-react": "^0.456.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^5.0.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.1.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "postcss": "^8.5.33",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3",
+    "vite": "^6.4.6"
+  },
+  "packageManager": "pnpm@10.33.2",
+  "engines": {
+    "node": ">=22"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "protobufjs"
+    ],
+    "overrides": {
+      "axios@<1.20.0": "1.20.0",
+      "file-type@<21.3.1": "21.3.1",
+      "music-metadata@<11.16.0": "11.16.0",
+      "protobufjs@>=7.5.0 <7.6.5": "7.6.5",
+      "uuid@<11.1.1": "11.1.1",
+      "follow-redirects@<1.16.2": "1.16.2",
+      "form-data@>=4.0.0 <4.0.6": "4.0.6",
+      "brace-expansion@<1.1.21": "1.1.21",
+      "brace-expansion@>=3.0.0 <5.0.12": "5.0.12",
+      "js-yaml@>=4.0.0 <4.3.2": "4.3.2",
+      "minimatch@>=7.0.0 <11.0.1": "11.0.1",
+      "baseline-browser-mapping@<2.11.0": "2.11.0",
+      "browserslist@>=4.0.0 <4.28.7": "4.28.7",
+      "nanoid@>=3.0.0 <3.3.18": "3.3.18",
+      "postcss@>=8.0.0 <8.5.33": "8.5.33",
+      "postcss-selector-parser@>=6.0.0 <6.1.5": "6.1.5",
+      "source-map-js@<1.2.2": "1.2.2"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+dist-ssr/
+*.local
+
+# Rust / Tauri
+src-tauri/target/
+src-tauri/gen/
+
+# Built sidecar artifacts (produced by `pnpm sidecar:build`)
+src-tauri/binaries/*
+!src-tauri/binaries/.gitkeep
+
+# Secrets & local data
+.env
+.env.*
+wa-session/
+*.samara
+*.daylattice
+*.db
+*.sqlite*
+release/
+coverage/
+*.exe
+*.msi
+
+
+# Editor / OS cruft
+.vscode/*
+!.vscode/extensions.json
+.claude/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+pnpm-debug.log*

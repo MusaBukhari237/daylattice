@@ -1,0 +1,62 @@
+[package]
+name = "daylattice"
+version = "0.1.0"
+description = "Daylattice — a premium local-first desktop todo app with Sam (AI)."
+authors = ["Daylattice contributors"]
+edition = "2021"
+rust-version = "1.89"
+license = "MIT"
+repository = "https://github.com/MusaBukhari237/daylattice"
+default-run = "daylattice"
+
+[lib]
+name = "daylattice_lib"
+crate-type = ["rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+tauri-plugin-shell = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+
+# rusqlite (bundled SQLite) + migrations
+rusqlite = { version = "0.41", features = ["bundled", "chrono", "serde_json"] }
+rusqlite_migration = "2.7"
+
+# HTTP / AI
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
+
+# Secrets
+keyring = { version = "3", features = ["apple-native", "windows-native", "sync-secret-service"] }
+
+# Async / serialization / misc
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+uuid = { version = "1", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+zip = { version = "9.6", default-features = false, features = ["deflate"] }
+base64 = "0.22"
+thiserror = "1"
+futures-util = "0.3"
+anyhow = "1"
+log = "0.4"
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-single-instance = "2"
+tauri-plugin-autostart = "2"
+tauri-plugin-global-shortcut = "2"
+
+[features]
+# this feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

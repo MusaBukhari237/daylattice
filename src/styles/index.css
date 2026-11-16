@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- Design tokens (premium light + dark) ---- */
+@layer base {
+  :root {
+    --bg: 250 250 250; /* #FAFAFA */
+    --surface: 255 255 255;
+    --surface-2: 245 246 248;
+    --border: 229 231 235;
+    --muted: 243 244 246;
+    --fg: 17 24 39;
+    --fg-subtle: 107 114 128;
+    --accent: 66 65 183;
+    --accent-fg: 255 255 255;
+    --accent-soft: 236 235 254;
+  }
+
+  .dark {
+    --bg: 13 15 20;
+    --surface: 22 25 32;
+    --surface-2: 28 32 41;
+    --border: 42 47 58;
+    --muted: 30 34 43;
+    --fg: 237 239 243;
+    --fg-subtle: 148 156 170;
+    --accent: 157 155 255;
+    --accent-fg: 16 18 24;
+    --accent-soft: 35 38 64;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+    margin: 0;
+    overflow: hidden;
+    font-feature-settings: "cv02", "cv03", "cv04";
+  }
+
+
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+  }
+
+  ::selection {
+    @apply bg-accent/25;
+  }
+
+  /* Subtle scrollbars that fit the surfaces */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full;
+    background-color: rgb(var(--fg-subtle) / 0.25);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(var(--fg-subtle) / 0.4);
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-border bg-surface shadow-card;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-border bg-surface px-3 py-2 text-sm
+           text-fg outline-none transition
+           placeholder:text-fg-subtle
+           focus:border-accent focus:ring-2 focus:ring-accent/30;
+  }
+
+  .label-text {
+    @apply text-xs font-medium text-fg-subtle;
+  }
+
+  /* App drag region for the custom title area if needed */
+  .drag {
+    -webkit-app-region: drag;
+  }
+  .no-drag {
+    -webkit-app-region: no-drag;
+  }
+}
+
+/* Streaming caret for the assistant's live text */
+.sam-caret::after {
+  content: "▌";
+  @apply text-accent;
+  animation: blink 1s step-start infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
